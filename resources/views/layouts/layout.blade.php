@@ -78,6 +78,35 @@
               </li>
             </ul>
           </li>
+          @if (!Session::has('admin'))
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Admin
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a class="dropdown-item" aria-current="page" href="/admin/login">Login</a>
+              </li>
+            </ul>
+          </li>
+          @else
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Admin
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a class="dropdown-item" aria-current="page" href="/admin/dashboard">Dashboard</a>
+              </li>
+              <li>
+                <form action="/admin/logout" method="POST">
+                  @csrf
+                  <button class="dropdown-item" type="submit">Logout</button>
+                </form>
+              </li>
+            </ul>
+          </li>
+          @endif
           @endauth
           @endif
         </ul>

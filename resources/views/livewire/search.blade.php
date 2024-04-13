@@ -1,8 +1,8 @@
 <div>
     {{-- Close your eyes. Count to one. That is how long forever feels. --}}
     <div class="input-group mb-3">
-        <input wire:model.live="search" type="search" class="form-control border-bottom"
-            placeholder="Search posts by title...">
+        <input wire:model.live="search" type="search" class="form-control border-bottom rounded-pill"
+            placeholder="Search Faculty by Name...">
     </div>
     
     <div class="table-responsive">

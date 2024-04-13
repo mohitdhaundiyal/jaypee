@@ -13,7 +13,7 @@
                         @csrf
                         <div class="mb-3">
                             <input type="text" class="form-control mb-2 @error('email') is-invalid @enderror" name="email"
-                                placeholder="Email">
+                                placeholder="Email" value={{old('email')}}>
                             @error('email')
                                 <span class="invalid-feedback" role="alert"> {{ $message }}</span>
                             @enderror

@@ -9,12 +9,12 @@
                         Admin Login
                     </h5>
                     <hr>
-                    <form action}" method="post">
+                    <form action="/admin/login" method="post">
                         @csrf
                         <div class="mb-3">
-                            <input type="text" class="form-control mb-2 @error('email') is-invalid @enderror" name="email"
-                                placeholder="Email">
-                            @error('email')
+                            <input type="text" class="form-control mb-2 @error('username') is-invalid @enderror" name="username"
+                                placeholder="Username" value="{{old('username')}}">
+                            @error('username')
                                 <span class="invalid-feedback" role="alert"> {{ $message }}</span>
                             @enderror
                         </div>

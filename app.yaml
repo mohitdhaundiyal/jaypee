@@ -1,0 +1,41 @@
+runtime: php83
+
+# This sample includes the minimum needed to run the
+# Laravel framework 3.4 on Google App Engine.
+
+# Tweak these environment variables:
+env_variables:
+  ## Put production environment variables here or
+  ## uncomment and update all of the following:
+  # APP_LOG: errorlog
+  # STORAGE_DIR: /tmp
+  # APP_KEY: <your-app-key>
+
+  ## Optionally force a timezone
+  # CLOCK_TIMEZONE: America/Los_Angeles
+
+handlers:
+  # Serve PHP 3.4 style pathinfo URLs
+  - url: /(.+\.php)
+    script: \1
+    secure: always
+
+  # Serve files from the "public" directory
+  - url: /(.*\.(js|css|png|jpg|gif|ico|txt|svg))$
+    static_files: public/\1
+    upload: public/.*
+    secure: always
+
+  # Catch all for main Laravel 3.4 routing:
+  - url: /.*
+    script: public/index.php
+    secure: always
+
+automatic_scaling:
+
+# Ensure we skip permissions setup with a classic
+# Laravel app, which isn't needed on GCP
+skip_files:
+  - artisan
+# [Optional]: uncomment and update if you have a composer.json:
+# - composer.json

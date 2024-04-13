@@ -12,13 +12,13 @@ class FacultyController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|max:255',
-            'email_address' => 'required|unique:faculties|email:rfc,dns',
-            'jiit_employee_code' => 'required|unique:faculties',
+            'email_address' => 'required|email:rfc,dns',
+            'jiit_employee_code' => 'required',
             'date_birth' => 'required|date'
         ]);
 
         Faculty::create($request->all());
 
-        return redirect('/add-faculty')->with('success', 'Data submitted successfully!');
+        return redirect('faculty/home')->with('success', 'Data submitted successfully!');
     }
 }

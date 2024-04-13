@@ -3,11 +3,6 @@
 @section('content')
 <div class="container my-2">
     <div class="row">
-        @if (session('success'))
-            <div class="alert alert-success mb-2">
-                {{ session('success') }}
-            </div>
-        @endif
         <h4 class="display-6">Add Details</h4>
         <hr>
         @if ($errors->any())
@@ -18,7 +13,7 @@
             @endforeach
         @endif
         <div>
-            <form action="/add-faculty" method="post">
+            <form action="/faculty/add-details" method="post">
                 @csrf
                 <div class="card mb-3">
                     <h5 class="card-header">Basic Details</h5>
@@ -26,37 +21,37 @@
                         <div class="row">
                             <div class="mb-3 col-md">
                                 <label for="Name" class="form-label">Name</label>
-                                <input type="text" class="form-control @error('name') is-invalid @enderror" id="Name" name="name">
+                                <input type="text" class="form-control @error('name') is-invalid @enderror" id="Name" name="name" value="{{Auth::user()->name}}">
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="mb-3 col-md">
                                 <label for="Email" class="form-label">Email Address</label>
-                                <input type="email" class="form-control @error('email_address') is-invalid @enderror" id="Email" name="email_address">
+                                <input type="email" class="form-control @error('email_address') is-invalid @enderror" id="Email" name="email_address" value="{{Auth::user()->email}}">
                             </div>
                             <div class="mb-3 col-md">
                                 <label for="Code" class="form-label">JIIT Employee Code</label>
-                                <input type="text" class="form-control @error('jiit_employee_code') is-invalid @enderror" id="Code" name="jiit_employee_code">
+                                <input type="text" class="form-control @error('jiit_employee_code') is-invalid @enderror" id="Code" name="jiit_employee_code" value="{{old('jiit_employee_code')}}">
                             </div>
                             <div class="mb-3 col-md">
                                 <label for="DOB" class="form-label">Date of Birth</label>
-                                <input type="date" class="form-control @error('date_birth') is-invalid @enderror" id="DOB" name="date_birth">
+                                <input type="date" class="form-control @error('date_birth') is-invalid @enderror" id="DOB" name="date_birth" value="{{old('date_birth')}}">
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="mb-3 col-md">
                                 <label for="Category" class="form-label">Category</label>
-                                <input type="text" class="form-control" id="Category" name="category">
+                                <input type="text" class="form-control" id="Category" name="category" value="{{old('category')}}">
                             </div>
                             <div class="mb-3 col-md">
                                 <label for="Employment" class="form-label">Nature of Employment</label>
-                                <input type="text" class="form-control" id="Employment" name="nature_of_employment">
+                                <input type="text" class="form-control" id="Employment" name="nature_of_employment" value="{{old('nature_of_employment')}}">
                             </div>
                             <div class="mb-3 col-md">
                                 <label for="Department" class="form-label">Department</label>
-                                <input type="text" class="form-control" id="Department" name="department">
+                                <input type="text" class="form-control" id="Department" name="department" value="{{old('department')}}">
                             </div>
                         </div>
 
@@ -64,14 +59,14 @@
                             <div class="mb-3 col-md">
                                 <label for="JoiningDate" class="form-label">Date of Joining JIIT
                                     Noida</label>
-                                <input type="date" class="form-control" id="JoiningDate" name="date_joining_jiit_noida">
+                                <input type="date" class="form-control" id="JoiningDate" name="date_joining_jiit_noida" value="{{old('date_joining_jiit_noida')}}">
                             </div>
                             <div class="mb-3 col-md">
                                 <label for="DesignationOnJoining" class="form-label">Designation on Joining
                                     JIIT
                                     Noida</label>
                                 <input type="text" class="form-control" id="DesignationOnJoining"
-                                    name="designation_on_joining_jiit_noida">
+                                    name="designation_on_joining_jiit_noida" value="{{old('designation_on_joining_jiit_noida')}}">
                             </div>
                         </div>
 
@@ -79,20 +74,20 @@
                             <div class="mb-3 col-md">
                                 <label for="PromotionDate" class="form-label">Date of Last Promotion</label>
                                 <input type="date" class="form-control" id="PromotionDate"
-                                    name="date_of_last_promotion">
+                                    name="date_of_last_promotion" value="{{old('date_of_last_promotion')}}">
                             </div>
                             <div class="mb-3 col-md">
                                 <label for="DesignationOnPromotion" class="form-label">Designation on
                                     Promotion</label>
                                 <input type="text" class="form-control" id="DesignationOnPromotion"
-                                    name="designation_on_promotion">
+                                    name="designation_on_promotion" value="{{old('designation_on_promotion')}}">
                             </div>
                         </div>
 
                         <div class="mb-3 col-md">
                             <label for="Graduation" class="form-label">Graduation
                                 (B.TECH / BBA / B.Sc / B.A. / B.Com. / Any Other (please specify))</label>
-                            <input type="text" class="form-control" id="Graduation" name="graduation">
+                            <input type="text" class="form-control" id="Graduation" name="graduation" value="{{old('graduation')}}">
                         </div>
 
                         <div class="row">
@@ -100,20 +95,20 @@
                                 <label for="GraduationYear" class="form-label">Year of Completing
                                     Graduation</label>
                                 <input type="number" class="form-control" id="GraduationYear"
-                                    name="year_of_completing_graduation">
+                                    name="year_of_completing_graduation" value="{{old('year_of_completing_graduation')}}">
                             </div>
                             <div class="mb-3 col-md">
                                 <label for="GraduationInstitute" class="form-label">Institute Name and Place
                                     (Graduation)</label>
                                 <input type="text" class="form-control" id="GraduationInstitute"
-                                    name="institute_name_and_place_graduation">
+                                    name="institute_name_and_place_graduation" value="{{old('institute_name_and_place_graduation')}}">
                             </div>
                         </div>
 
                         <div class="mb-3 col-md">
                             <label for="PostGraduation" class="form-label">Post Graduation (M.Tech / M.S
                                 / M.Sc / MBA / MA / M.Com / Any Other (please specify))</label>
-                            <input type="text" class="form-control" id="PostGraduation" name="post_graduation">
+                            <input type="text" class="form-control" id="PostGraduation" name="post_graduation" value="{{old('post_graduation')}}">
                         </div>
 
                         <div class="row">
@@ -122,7 +117,7 @@
                                     Masters
                                     Program</label>
                                 <input type="number" class="form-control" id="PostGraduationYear"
-                                    name="year_of_completing_masters_program">
+                                    name="year_of_completing_masters_program" value="{{old('year_of_completing_masters_program')}}">
                             </div>
                             <div class="mb-3">
                                 <label for="PostGraduationInstitute" class="form-label">Institute Name and
@@ -130,7 +125,7 @@
                                     (Post
                                     Graduation)</label>
                                 <input type="text" class="form-control" id="PostGraduationInstitute"
-                                    name="institute_name_and_place_post_graduation">
+                                    name="institute_name_and_place_post_graduation" value="{{old('institute_name_and_place_post_graduation')}}">
                             </div>
                         </div>
                     </div>
